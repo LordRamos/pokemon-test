@@ -31,7 +31,5 @@ class BaseModelMixin:
     @classmethod
     def order_by(cls, order_type, field_name, queryset=None):
         queryset = queryset if queryset else cls.query
-        if order_type == "desc":
-            return queryset.order_by(desc(getattr(cls, field_name)))
-        else:
-            return queryset.order_by(asc(getattr(cls, field_name)))
+        order_funct = desc if order_type == "desc" else asc
+        return queryset.order_by(order_funct(getattr(cls, field_name)))

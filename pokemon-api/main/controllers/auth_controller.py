@@ -2,11 +2,6 @@ from flask import request, Blueprint
 from flask_restful import Api, Resource, reqparse
 from main.config import Config
 from flask_jwt_extended import create_access_token, create_refresh_token
-# wt_refresh_token_required,
-# get_jwt_identity,
-# get_raw_jwt
-
-# add_argument_parser(Pokemon, parser)
 auth_v1_bp = Blueprint('auth_v1_bp', __name__)
 api = Api(auth_v1_bp)
 
@@ -34,5 +29,3 @@ class AuthLoginResource(Resource):
 
 api.add_resource(AuthLoginResource, '/api/v1/auth/login',
                  endpoint='auth')
-# api.add_resource(AuthLoginResource, '/api/v1/auth/login',
-#                  endpoint='auth')

@@ -3,10 +3,10 @@ from main.schemas.pokemon_schema import PokemonSchema
 from flask import request, Blueprint
 from flask import abort
 from flask_restful import Api, Resource, reqparse
-from ..schemas.pokemon_schema import PokemonSchema
-from ..models.pokemon import Pokemon
-from main.utils import add_argument_parser, pop_query_param, remove_none_from_dict, add_argument_parser
 from flask_jwt_extended import jwt_required
+from main.schemas.pokemon_schema import PokemonSchema
+from main.models.pokemon import Pokemon
+from main.utils import add_argument_parser, pop_query_param, remove_none_from_dict, add_argument_parser
 pokemon_schema = PokemonSchema()
 pokemon_v1_bp = Blueprint('pokemon_v1_bp', __name__)
 api = Api(pokemon_v1_bp)
@@ -15,6 +15,8 @@ api = Api(pokemon_v1_bp)
 class PokemonListResource(Resource):
     parser = reqparse.RequestParser()
     add_argument_parser(Pokemon, parser)
+    parser.add_argument("order", type=str)
+    parser.add_argument("sort_by", type=str)
     # get all
     @jwt_required()
     def get(self):
