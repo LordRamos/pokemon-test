@@ -6,7 +6,12 @@ basedir = os.path.join(basedir, 'db')
 
 
 class Config:
-    SECRET_KEY = os.getenv('SECRET_KEY', 'pokemon2021')
+    TEST_USERNAME = 'pokemon'
+    TEST_PASSWORD = 'pokemon2021'
+    SECRET_KEY = os.getenv('SECRET_KEY', TEST_PASSWORD)
+    JWT_SECRET_KEY = TEST_PASSWORD
+    JWT_BLACKLIST_ENABLED = True
+    JWT_BLACKLIST_TOKEN_CHECKS = ['access', 'refresh']
     DEBUG = False
 
 
