@@ -6,7 +6,8 @@ from flask_restful import Api, Resource, reqparse
 from flask_jwt_extended import jwt_required
 from main.schemas.pokemon_schema import PokemonSchema
 from main.models.pokemon import Pokemon
-from main.utils import add_argument_parser, pop_query_param, remove_none_from_dict, add_argument_parser
+from main.utils import (add_argument_parser, pop_query_param,
+                        remove_none_from_dict, add_argument_parser, set_dict_to_model)
 pokemon_schema = PokemonSchema()
 pokemon_v1_bp = Blueprint('pokemon_v1_bp', __name__)
 api = Api(pokemon_v1_bp)
@@ -67,6 +68,7 @@ class PokemonResource(Resource):
         pokemon = Pokemon.get(id)
         if not pokemon:
             abort(404)
+        pokemon.delete()
         resp = pokemon_schema.dump(pokemon)
         return resp
     # update
@@ -77,10 +79,10 @@ class PokemonResource(Resource):
         if errors:
             return errors, 422
         pokemon_dict = pokemon_schema.load(data)
-        pokemon_dict
         pokemon = Pokemon.get(id)
         if not pokemon:
             abort(404)
+        set_dict_to_model(pokemon, pokemon_dict)
         pokemon.save()
         resp = pokemon_schema.dump(pokemon)
         return resp, 201

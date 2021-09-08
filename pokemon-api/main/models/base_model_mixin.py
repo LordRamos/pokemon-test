@@ -17,7 +17,7 @@ class BaseModelMixin:
 
     @classmethod
     def get_queryset(cls):
-        return cls.query
+        return cls.order_by("desc", "id", cls.query)
 
     @classmethod
     def get(cls, id):

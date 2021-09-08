@@ -7,7 +7,7 @@ class PokemonSchema(ma.Schema):
     number = fields.Integer(required=True)
     name = fields.String(required=True)
     type1 = fields.String(required=True)
-    type2 = fields.String()
+    type2 = fields.String(required=False)
     total = fields.Integer(required=True)
     hp = fields.Integer(required=True)
     attack = fields.Integer(required=True)

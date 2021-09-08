@@ -1,5 +1,6 @@
 from flask import Flask, jsonify
 from flask_restful import Api
+from flask_cors import CORS
 # from common.error_handling import ObjectNotFound, AppErrorBaseClass
 from .config import config_by_name
 from .ext import db, ma, migrate, jwt
@@ -10,6 +11,7 @@ from .controllers.auth_controller import auth_v1_bp
 
 def create_app(config_name):
     app = Flask(__name__)
+    cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
     api = Api(app, catch_all_404s=True)
     app.config.from_object(config_by_name[config_name])
     # Extensions
