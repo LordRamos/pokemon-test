@@ -1,0 +1,138 @@
+<div class="">
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+    <!-- CENTER -->
+    <div class="center">
+        <!-- HEADER -->
+        <div class="header accent" fxLayout="row" fxLayoutAlign="space-between center">
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <button mat-icon-button color="primary" matTooltip="Atras" [routerLink]="'/pokemon'">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+                <div fxLayout="column" fxLayoutAlign="start start"
+                    >
+                    <div class="h2" *ngIf="isEditMode">
+                        Editar pokemon {{pokemon?.name}}
+                    </div>
+                    <div class="h2" *ngIf="!isEditMode">
+                        Nuevo pokemon
+                    </div>
+                 
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+            <button mat-raised-button color="primary"  [disabled]="!userForm || userForm?.invalid"
+                (click)="save()">
+                <span>Guardar</span>
+            </button>
+        </div>
+        <!-- / HEADER -->
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+
+            <div class="content">
+                <form *ngIf="!isEditMode || isEditMode && pokemon" name="userForm" [formGroup]="userForm"
+                    class="w-100-p" fxLayout="column" fxFlex>
+                    <div class="tab-content p-24" >
+                        <div fxLayout="column" fxLayoutGap="20px">
+                           <div fxFlex fxLayout="row"  fxLayout.lt-md="column" fxLayoutAlign="space-between center" fxLayoutGap="20px" >
+                            <mat-form-field fxFlex appearance="outline" floatLabel="always" class="w-100-p" >
+                                <mat-label># </mat-label>
+                                <input matInput type="number" placeholder="#" name="number"
+                                    formControlName="number"  required>
+                                    <mat-error *ngIf="userForm.get('number')?.invalid">{{getErrorMessage("number")}}</mat-error>
+                            </mat-form-field>
+                            <mat-form-field fxFlex appearance="outline" floatLabel="always" class="w-100-p">
+                                <mat-label>Name </mat-label>
+                                <input matInput type="text" placeholder="Name" name="name"
+                                    formControlName="name"  required>
+                                    <mat-error *ngIf="userForm.get('name')?.invalid">{{getErrorMessage("name")}}</mat-error>
+                            </mat-form-field>
+                            <mat-form-field fxFlex appearance="outline" floatLabel="always" class="w-100-p">
+                                <mat-label>Type 1</mat-label>
+                                <input matInput type="text" placeholder="Type 1" name="type1"
+                                    formControlName="type1"  required>
+                                    <mat-error *ngIf="userForm.get('type1')?.invalid">{{getErrorMessage("type1")}}</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div fxFlex fxLayout="row"  fxLayout.lt-md="column" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+                            <mat-form-field fxFlex appearance="outline" floatLabel="always" class="w-100-p">
+                                <mat-label>Type 2</mat-label>
+                                <input matInput type="text" placeholder="Type 2" name="type2"
+                                    formControlName="type2"  >
+                                    <mat-error *ngIf="userForm.get('type2')?.invalid">{{getErrorMessage("type2")}}</mat-error>
+                            </mat-form-field>
+                            <mat-form-field fxFlex appearance="outline" floatLabel="always" class="w-100-p">
+                                <mat-label>Total</mat-label>
+                                <input matInput type="number" placeholder="Total" name="total"
+                                    formControlName="total"  required>
+                                    <mat-error *ngIf="userForm.get('total')?.invalid">{{getErrorMessage("total")}}</mat-error>
+                            </mat-form-field>
+                            <mat-form-field fxFlex appearance="outline" floatLabel="always" class="w-100-p">
+                                <mat-label>HP</mat-label>
+                                <input matInput type="number" placeholder="HP" name="hp"
+                                    formControlName="hp"  required>
+                                    <mat-error *ngIf="userForm.get('hp')?.invalid">{{getErrorMessage("hp")}}</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div fxFlex fxLayout="row"  fxLayout.lt-md="column" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+                            <mat-form-field fxFlex appearance="outline" floatLabel="always" class="w-100-p">
+                                <mat-label>Attack</mat-label>
+                                <input matInput type="number" placeholder="Atack" name="atack"
+                                    formControlName="attack"  required>
+                                    <mat-error *ngIf="userForm.get('attack')?.invalid">{{getErrorMessage("attack")}}</mat-error>
+                            </mat-form-field>
+                            <mat-form-field fxFlex appearance="outline" floatLabel="always" class="w-100-p">
+                                <mat-label>Defense</mat-label>
+                                <input matInput type="number" placeholder="Defense" name="defense"
+                                    formControlName="defense"  required>
+                                    <mat-error *ngIf="userForm.get('defense')?.invalid">{{getErrorMessage("defense")}}</mat-error>
+                            </mat-form-field>
+                            <mat-form-field fxFlex appearance="outline" floatLabel="always" class="w-100-p">
+                                <mat-label>SP. Atk</mat-label>
+                                <input matInput type="number" placeholder="SP. Atk" name="sp_atk"
+                                    formControlName="sp_atk"  required>
+                                    <mat-error *ngIf="userForm.get('sp_atk')?.invalid">{{getErrorMessage("sp_atk")}}</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div fxFlex fxLayout="row"  fxLayout.lt-md="column" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+                            <mat-form-field fxFlex appearance="outline" floatLabel="always" class="w-100-p">
+                                <mat-label>SP. Def</mat-label>
+                                <input matInput type="number" placeholder="SP. Def" name="sp_def"
+                                    formControlName="sp_def"  required>
+                                    <mat-error *ngIf="userForm.get('sp_def')?.invalid">{{getErrorMessage("sp_def")}}</mat-error>
+                            </mat-form-field>
+                            <mat-form-field fxFlex appearance="outline" floatLabel="always" class="w-100-p">
+                                <mat-label>Speed</mat-label>
+                                <input matInput type="number" placeholder="Speed" name="speed"
+                                    formControlName="speed"  required>
+                                    <mat-error *ngIf="userForm.get('speed')?.invalid">{{getErrorMessage("speed")}}</mat-error>
+                            </mat-form-field>
+                            <mat-form-field fxFlex appearance="outline" floatLabel="always" class="w-100-p">
+                                <mat-label>Generation</mat-label>
+                                <input matInput type="number" placeholder="Generation" name="generation"
+                                    formControlName="generation"  required>
+                                    <mat-error *ngIf="userForm.get('generation')?.invalid">{{getErrorMessage("generation")}}</mat-error>
+                            </mat-form-field>
+                        </div >
+                              <div fxFlex style="width: 100%;"><mat-checkbox  color="primary"
+                                formControlName="legendary">Is legendary</mat-checkbox></div>
+                                
+                               
+                            
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>

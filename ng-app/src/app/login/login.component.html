@@ -1,0 +1,31 @@
+<div class="session mat-custom-primary" fxLayout="row" fxLayoutAlign="center center">
+    <div  class="session-wrapper" fxLayout="row" fxLayoutAlign="center center">
+            <div >
+                <form class="pa-1" [formGroup]="formLogin" (ngSubmit)="formLogin.valid && onSubmit()">
+                    <div class="session-logo-wrapper">
+                        <img src="assets/logo.png" width="349" height="90" />
+                    </div>
+                    <h2>
+                    </h2>
+                    <div fxLayout="column" fxLayoutAlign="space-around">
+                        <mat-form-field class="pt-1" appearance="outline">
+                            <mat-icon matPrefix>person_outline</mat-icon>
+                            <input id="email" formControlName="email" autocomplete="email" matInput placeholder="Email"
+                                type="email" />
+
+
+                        </mat-form-field>
+                        <mat-form-field class="pt-1" appearance="outline">
+                            <mat-icon matPrefix>lock_outline</mat-icon>
+                            <input id="password" formControlName="password" autocomplete="current-password" matInput
+                                type="password" placeholder="Password" />
+                        </mat-form-field>
+                        <div class="invalid-user" *ngIf="invalidLogin">Usuario o clave inválida</div>
+                        <button id="login" class="mt-1" color="primary" mat-raised-button>
+                            <span class=" button-text">Login</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+    </div>
+</div>
