@@ -1,3 +1,5 @@
+from flask_restful import inputs
+
 
 def remove_none_from_dict(dict):
     return {k: v for k, v in dict.items() if v is not None}
@@ -9,7 +11,10 @@ def pop_query_param(name, query_params):
 
 def add_argument_parser(cls, parser):
     for c in cls.__table__.columns:
-        parser.add_argument(c.name, type=c.type.python_type)
+        strType = str(c.type)
+        # fix python boolean
+        ctype = inputs.boolean if strType == "BOOLEAN" else c.type.python_type
+        parser.add_argument(c.name, type=ctype)
 
 
 def set_dict_to_model(model, dict):

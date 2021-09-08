@@ -35,6 +35,10 @@ class PokemonListResource(Resource):
         if order and sort_by:
             pokemons = Pokemon.order_by(
                 order, sort_by, pokemons)
+        # default sort by id
+        else:
+            pokemons = Pokemon.order_by(
+                "desc", "id", pokemons)
 
         result = pokemon_schema.dump(pokemons.all(), many=True)
         return result

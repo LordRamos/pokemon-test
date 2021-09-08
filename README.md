@@ -9,7 +9,7 @@ Proyecto desarrollado en Python 3.8 y Sqlite3.
 Crear un environment con el gestor de su preferencia, luego situarse en el directorio `pokemon-api` y ejecutar:
 
 ```
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 ### Inicializar BD y correr proyecto
@@ -19,7 +19,7 @@ Con el enviroment activo situarse en el directorio `pokemon-api`
 Exportar la variable de entorno:
 
 ```
-export FLASK_APP="entrypoint:app
+export FLASK_APP="entrypoint:app"
 ```
 
 Luego para inicializar BD y migraciones:
@@ -95,7 +95,7 @@ GET http://localhost:5000/api/v1/pokemon?sort_by=number&order=asc
 Puede combinar filtros y ordenamiento:
 
 ```
-GET http://localhost:5000/api/v1/pokemon?sort_by=number&order=asc&type1=Fire&lengendary=true
+GET http://localhost:5000/api/v1/pokemon?sort_by=number&order=asc&type1=Fire&legendary=true
 ```
 
 Para agregar un nuevo pokemon:
