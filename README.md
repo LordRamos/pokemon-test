@@ -54,7 +54,7 @@ Para autenticación:
 POST http://localhost:5000/api/v1/auth/login?username=pokemon&password=pokemon2021
 ```
 
-Para todos los demas endpoints debe poseer el `access_token` generado en el paso anterior y enviarlo en la autorizacion `Bearer aquitodosutoken`
+Para todos los demás endpoints debe poseer el `access_token` generado en el paso anterior y enviarlo en la autorización `Bearer aquitodosutoken`
 
 Obtener lista de pokemon:
 
@@ -62,7 +62,7 @@ Obtener lista de pokemon:
 GET http://localhost:5000/api/v1/pokemon
 ```
 
-Este endpint recibe parametros adicionales para busquedas y ordernamiento, puede usar cualquiera de los siguientes atributos:
+Este endpoint recibe parametros adicionales para busquedas y ordernamiento, puede usar cualquiera de los siguientes atributos:
 | Atributo | Tipo de dato |
 | ------------- | ------------- |
 | id | int |
